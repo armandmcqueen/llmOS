@@ -26,7 +26,10 @@ import { AIInterfaceImpl } from './ai.js'
 import { defineTask, createSpawner } from './task.js'
 import type { LLMOS, LLMOSConfig } from './types.js'
 
-export { defineTask } from './task.js'
+export { defineTask, createSpawner } from './task.js'
+export { Store } from './store.js'
+export { ToolboxImpl } from './toolbox.js'
+export { AIInterfaceImpl } from './ai.js'
 
 export function createLLMOS(config: LLMOSConfig): LLMOS {
   const store = new Store()

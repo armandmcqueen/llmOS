@@ -35,4 +35,28 @@ export class Store {
   raw(): StoreAccessor {
     return this.scope('')
   }
+
+  /**
+   * Returns a plain object snapshot of all store data.
+   * Keys are store paths, values are the stored values.
+   * This is the canonical serialization format for llmos state.
+   */
+  snapshot(): Record<string, any> {
+    const result: Record<string, any> = {}
+    for (const [key, value] of this.data) {
+      result[key] = value
+    }
+    return result
+  }
+
+  /**
+   * Load a snapshot into the store, replacing all existing data.
+   * The snapshot should be a plain object in the format returned by snapshot().
+   */
+  load(snapshot: Record<string, any>): void {
+    this.data.clear()
+    for (const [key, value] of Object.entries(snapshot)) {
+      this.data.set(key, value)
+    }
+  }
 }

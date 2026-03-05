@@ -8,7 +8,12 @@
       "mcp__claude_ai_Vercel__search_vercel_documentation",
       "Bash(pnpm install:*)",
       "Bash(pnpm build:*)",
-      "Bash(pnpm test:*)"
+      "Bash(pnpm test:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:ui.shadcn.com)",
+      "Bash(pnpm dlx:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
