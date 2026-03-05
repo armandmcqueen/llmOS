@@ -1,0 +1,302 @@
+{
+  "/global/sessions/1bcced21-b7c8-43ca-a691-94a08d5b0044/created": "2026-03-02T16:15:23.003Z",
+  "/global/sessions/1bcced21-b7c8-43ca-a691-94a08d5b0044/turns": [
+    "26614eb3-3c69-48c2-9d56-e12dda962041"
+  ],
+  "/kernel/tasks/26614eb3-3c69-48c2-9d56-e12dda962041/meta": {
+    "id": "26614eb3-3c69-48c2-9d56-e12dda962041",
+    "name": "chat-turn",
+    "status": "completed",
+    "parentId": null,
+    "startTime": "2026-03-02T16:15:23.005Z",
+    "endTime": "2026-03-02T16:15:23.005Z",
+    "error": null
+  },
+  "/task/26614eb3-3c69-48c2-9d56-e12dda962041/request": {
+    "role": "user",
+    "content": "Hello world",
+    "timestamp": "2026-03-02T16:15:23.005Z"
+  },
+  "/task/26614eb3-3c69-48c2-9d56-e12dda962041/session": "1bcced21-b7c8-43ca-a691-94a08d5b0044",
+  "/kernel/ai/requests": [
+    {
+      "model": "mock",
+      "request": {
+        "system": "You are a helpful assistant with access to a search_history tool that lets you search through previous conversations. Use it when the user references past discussions, asks about something mentioned before, or when historical context would improve your answer. Be conversational and helpful.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Hello world"
+          }
+        ],
+        "tools": [
+          "search_history"
+        ]
+      },
+      "response": {
+        "content": "[Mock] I'd be happy to help with that. You said: \"Hello world\"",
+        "toolCalls": [],
+        "usage": {
+          "promptTokens": 100,
+          "completionTokens": 50,
+          "totalTokens": 150
+        }
+      },
+      "durationMs": 0,
+      "timestamp": "2026-03-02T16:15:23.005Z",
+      "taskId": "26614eb3-3c69-48c2-9d56-e12dda962041"
+    },
+    {
+      "model": "mock",
+      "request": {
+        "system": "You are a helpful assistant with access to a search_history tool that lets you search through previous conversations. Use it when the user references past discussions, asks about something mentioned before, or when historical context would improve your answer. Be conversational and helpful.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "What did we discuss previously?"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "mock-tc-1772468366714",
+                "name": "search_history",
+                "arguments": {
+                  "query": "What did we discuss previously?"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "content": "{\"query\":\"What did we discuss previously?\",\"relevantTurns\":[{\"taskId\":\"26614eb3-3c69-48c2-9d56-e12dda962041\",\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously?\",\"relevantExcerpts\":[\"search query: \\\"what did we discuss previously?\\\"\\n\\nuser message: hello world\\n\\nassistant response: [mock] i'd be happy to help with that. you said: \\\"hello world\\\"\"]}],\"totalSearched\":1,\"synthesis\":\"[Mock synthesis] Found 1 relevant conversation(s). The previous discussions covered topics related to the search query.\"}",
+            "toolCallId": "mock-tc-1772468366714"
+          }
+        ],
+        "tools": [
+          "search_history"
+        ]
+      },
+      "response": {
+        "content": "",
+        "toolCalls": [
+          {
+            "id": "mock-tc-1772468366714",
+            "name": "search_history",
+            "arguments": {
+              "query": "What did we discuss previously?"
+            }
+          }
+        ],
+        "usage": {
+          "promptTokens": 100,
+          "completionTokens": 50,
+          "totalTokens": 150
+        }
+      },
+      "durationMs": 0,
+      "timestamp": "2026-03-02T16:19:26.714Z",
+      "taskId": "0cbc4653-57b8-41b3-8617-0102506f0052"
+    },
+    {
+      "model": "mock",
+      "request": {
+        "system": "You are a search assistant. Your job is to evaluate whether this chat turn is relevant to the search query. Respond with JSON: { \"relevant\": boolean, \"summary\": \"brief summary of what this turn discusses\", \"relevantExcerpts\": [\"relevant quote 1\", ...] }. If not relevant, return empty excerpts.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Search query: \"What did we discuss previously?\"\n\nUser message: Hello world\n\nAssistant response: [Mock] I'd be happy to help with that. You said: \"Hello world\""
+          }
+        ],
+        "tools": []
+      },
+      "response": {
+        "content": "{\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously?\",\"relevantExcerpts\":[\"search query: \\\"what did we discuss previously?\\\"\\n\\nuser message: hello world\\n\\nassistant response: [mock] i'd be happy to help with that. you said: \\\"hello world\\\"\"]}",
+        "toolCalls": [],
+        "usage": {
+          "promptTokens": 100,
+          "completionTokens": 50,
+          "totalTokens": 150
+        }
+      },
+      "durationMs": 0,
+      "timestamp": "2026-03-02T16:19:26.714Z",
+      "taskId": "f2bef21b-7782-459c-8b11-6b13050f657a"
+    },
+    {
+      "model": "mock",
+      "request": {
+        "system": "You are a helpful assistant. Given relevant excerpts from previous conversations, synthesize the relevant information into a concise summary that would help answer the current query. Be specific about what was discussed.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Query: \"What did we discuss previously?\"\n\nRelevant conversation excerpts:\n[Turn 1] (task 26614eb3): This turn discusses topics related to: what, discuss, previously?\nExcerpts: search query: \"what did we discuss previously?\"\n\nuser message: hello world\n\nassistant response: [mock] i'd be happy to help with that. you said: \"hello world\""
+          }
+        ],
+        "tools": []
+      },
+      "response": {
+        "content": "[Mock synthesis] Found 1 relevant conversation(s). The previous discussions covered topics related to the search query.",
+        "toolCalls": [],
+        "usage": {
+          "promptTokens": 100,
+          "completionTokens": 50,
+          "totalTokens": 150
+        }
+      },
+      "durationMs": 0,
+      "timestamp": "2026-03-02T16:19:26.714Z",
+      "taskId": "a2c74dcb-866e-4c43-92ad-11ae34457538"
+    },
+    {
+      "model": "mock",
+      "request": {
+        "system": "You are a helpful assistant with access to a search_history tool that lets you search through previous conversations. Use it when the user references past discussions, asks about something mentioned before, or when historical context would improve your answer. Be conversational and helpful.",
+        "messages": [
+          {
+            "role": "user",
+            "content": "What did we discuss previously?"
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "mock-tc-1772468366714",
+                "name": "search_history",
+                "arguments": {
+                  "query": "What did we discuss previously?"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "content": "{\"query\":\"What did we discuss previously?\",\"relevantTurns\":[{\"taskId\":\"26614eb3-3c69-48c2-9d56-e12dda962041\",\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously?\",\"relevantExcerpts\":[\"search query: \\\"what did we discuss previously?\\\"\\n\\nuser message: hello world\\n\\nassistant response: [mock] i'd be happy to help with that. you said: \\\"hello world\\\"\"]}],\"totalSearched\":1,\"synthesis\":\"[Mock synthesis] Found 1 relevant conversation(s). The previous discussions covered topics related to the search query.\"}",
+            "toolCallId": "mock-tc-1772468366714"
+          }
+        ],
+        "tools": [
+          "search_history"
+        ]
+      },
+      "response": {
+        "content": "Based on our previous conversations, here's what I found: {\"query\":\"What did we discuss previously?\",\"relevantTurns\":[{\"taskId\":\"26614eb3-3c69-48c2-9d56-e12dda962041\",\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously",
+        "toolCalls": [],
+        "usage": {
+          "promptTokens": 100,
+          "completionTokens": 50,
+          "totalTokens": 150
+        }
+      },
+      "durationMs": 0,
+      "timestamp": "2026-03-02T16:19:26.714Z",
+      "taskId": "0cbc4653-57b8-41b3-8617-0102506f0052"
+    }
+  ],
+  "/kernel/tasks/26614eb3-3c69-48c2-9d56-e12dda962041/usage": {
+    "promptTokens": 100,
+    "completionTokens": 50,
+    "totalTokens": 150,
+    "requestCount": 1
+  },
+  "/task/26614eb3-3c69-48c2-9d56-e12dda962041/response": {
+    "role": "assistant",
+    "content": "[Mock] I'd be happy to help with that. You said: \"Hello world\"",
+    "timestamp": "2026-03-02T16:15:23.005Z"
+  },
+  "/kernel/tasks/26614eb3-3c69-48c2-9d56-e12dda962041/result": {
+    "assistantMessage": "[Mock] I'd be happy to help with that. You said: \"Hello world\"",
+    "searchUsed": false,
+    "turnIndex": 0
+  },
+  "/global/sessions/2e8b0d28-0e92-4559-be18-186889efa985/created": "2026-03-02T16:19:26.713Z",
+  "/global/sessions/2e8b0d28-0e92-4559-be18-186889efa985/turns": [
+    "0cbc4653-57b8-41b3-8617-0102506f0052"
+  ],
+  "/kernel/tasks/0cbc4653-57b8-41b3-8617-0102506f0052/meta": {
+    "id": "0cbc4653-57b8-41b3-8617-0102506f0052",
+    "name": "chat-turn",
+    "status": "completed",
+    "parentId": null,
+    "startTime": "2026-03-02T16:19:26.714Z",
+    "endTime": "2026-03-02T16:19:26.714Z",
+    "error": null
+  },
+  "/task/0cbc4653-57b8-41b3-8617-0102506f0052/request": {
+    "role": "user",
+    "content": "What did we discuss previously?",
+    "timestamp": "2026-03-02T16:19:26.714Z"
+  },
+  "/task/0cbc4653-57b8-41b3-8617-0102506f0052/session": "2e8b0d28-0e92-4559-be18-186889efa985",
+  "/kernel/tasks/0cbc4653-57b8-41b3-8617-0102506f0052/usage": {
+    "promptTokens": 200,
+    "completionTokens": 100,
+    "totalTokens": 300,
+    "requestCount": 2
+  },
+  "/kernel/tasks/a2c74dcb-866e-4c43-92ad-11ae34457538/meta": {
+    "id": "a2c74dcb-866e-4c43-92ad-11ae34457538",
+    "name": "history-search-coordinator",
+    "status": "completed",
+    "parentId": "0cbc4653-57b8-41b3-8617-0102506f0052",
+    "startTime": "2026-03-02T16:19:26.714Z",
+    "endTime": "2026-03-02T16:19:26.714Z",
+    "error": null
+  },
+  "/kernel/tasks/f2bef21b-7782-459c-8b11-6b13050f657a/meta": {
+    "id": "f2bef21b-7782-459c-8b11-6b13050f657a",
+    "name": "history-search-worker-0",
+    "status": "completed",
+    "parentId": "a2c74dcb-866e-4c43-92ad-11ae34457538",
+    "startTime": "2026-03-02T16:19:26.714Z",
+    "endTime": "2026-03-02T16:19:26.714Z",
+    "error": null
+  },
+  "/kernel/tasks/f2bef21b-7782-459c-8b11-6b13050f657a/usage": {
+    "promptTokens": 100,
+    "completionTokens": 50,
+    "totalTokens": 150,
+    "requestCount": 1
+  },
+  "/kernel/tasks/f2bef21b-7782-459c-8b11-6b13050f657a/result": {
+    "taskId": "26614eb3-3c69-48c2-9d56-e12dda962041",
+    "relevant": true,
+    "summary": "This turn discusses topics related to: what, discuss, previously?",
+    "relevantExcerpts": [
+      "search query: \"what did we discuss previously?\"\n\nuser message: hello world\n\nassistant response: [mock] i'd be happy to help with that. you said: \"hello world\""
+    ]
+  },
+  "/kernel/tasks/a2c74dcb-866e-4c43-92ad-11ae34457538/usage": {
+    "promptTokens": 100,
+    "completionTokens": 50,
+    "totalTokens": 150,
+    "requestCount": 1
+  },
+  "/kernel/tasks/a2c74dcb-866e-4c43-92ad-11ae34457538/result": {
+    "query": "What did we discuss previously?",
+    "relevantTurns": [
+      {
+        "taskId": "26614eb3-3c69-48c2-9d56-e12dda962041",
+        "relevant": true,
+        "summary": "This turn discusses topics related to: what, discuss, previously?",
+        "relevantExcerpts": [
+          "search query: \"what did we discuss previously?\"\n\nuser message: hello world\n\nassistant response: [mock] i'd be happy to help with that. you said: \"hello world\""
+        ]
+      }
+    ],
+    "totalSearched": 1,
+    "synthesis": "[Mock synthesis] Found 1 relevant conversation(s). The previous discussions covered topics related to the search query."
+  },
+  "/task/0cbc4653-57b8-41b3-8617-0102506f0052/response": {
+    "role": "assistant",
+    "content": "Based on our previous conversations, here's what I found: {\"query\":\"What did we discuss previously?\",\"relevantTurns\":[{\"taskId\":\"26614eb3-3c69-48c2-9d56-e12dda962041\",\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously",
+    "timestamp": "2026-03-02T16:19:26.714Z"
+  },
+  "/kernel/tasks/0cbc4653-57b8-41b3-8617-0102506f0052/result": {
+    "assistantMessage": "Based on our previous conversations, here's what I found: {\"query\":\"What did we discuss previously?\",\"relevantTurns\":[{\"taskId\":\"26614eb3-3c69-48c2-9d56-e12dda962041\",\"relevant\":true,\"summary\":\"This turn discusses topics related to: what, discuss, previously",
+    "searchUsed": true,
+    "turnIndex": 0
+  }
+}

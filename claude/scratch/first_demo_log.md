@@ -97,3 +97,40 @@
 - Stripped `<style>` block from index.html
 - Added `import "./globals.css"` to main.tsx
 - Build succeeds: 265KB JS (82KB gzip), 37KB CSS (7KB gzip), fonts bundled as woff2
+
+## 2026-03-02T16:21:03Z — Chat-with-History demo (M0-M5)
+
+### M0: Project scaffolding
+- Created `examples/chat-history/` with package.json, tsconfig.json
+- Workspace glob `examples/*` auto-includes it — no pnpm-workspace.yaml change needed
+- Created `src/types.ts` with all interfaces (ChatTurnEvent, SearchEvent, etc.)
+
+### M1: History discovery
+- Created `src/history.ts` — `readAllChatTurns(rawStore)` scans `/kernel/tasks/*/meta` for completed chat-turn tasks, reads request/response from `/task/{id}/request` and `/task/{id}/response`
+- Uses raw store to avoid `list()` prefix stripping complexity
+- 8 tests: empty store, discovery, chronological ordering, filters (name, status), missing data, excludeTaskIds, coexistence with other data
+
+### M2: Search map-reduce
+- Created `src/search.ts` — `searchCoordinatorTask` discovers turns, spawns `searchWorkerTask` per turn, synthesizes
+- Created `src/mock-ai.ts` — MockAI with three behaviors: chat agent (with tool calls), search worker (keyword matching), search synthesis
+- Fixed `findLast` → `filter + last element` for es2022 target
+- 5 tests: empty history, relevant turn discovery, worker spawning, excludeTaskIds, AI logging
+
+### M3: Chat turn with tool loop
+- Created `src/chat.ts` — `chatTurnTask` with manual 3-round tool-use loop
+- Created `src/search-tool.ts` — `createSearchHistoryTool(ctx)` factory (closure over TaskContext for ctx.spawn)
+- Created `src/setup.ts` — `createChatLLMOS(mode, apiKey?, delayMs?)`
+- 7 tests: simple turn, data storage, search trigger, session tracking, conversation history, createChatLLMOS mock/real
+
+### M4: Interactive CLI
+- Created `src/cli.ts` — readline-based interactive chat
+- Features: /history, /inspect, /save, /quit commands
+- Supports --real, --delay, --load flags
+- ANSI colors for role labels
+- Smoke tested: first turn works, history search triggered when loading previous snapshot
+- Store snapshot shows full task tree: chat turns, coordinator, workers
+
+### M5: Documentation
+- Created README.md (quick start, how it works, CLI commands, store schema)
+- Created DESIGN.md (architecture, data flow, tool loop, MockAI, key decisions, comparison with book-search)
+- Updated scratch notes

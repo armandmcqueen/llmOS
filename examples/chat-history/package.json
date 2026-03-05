@@ -1,0 +1,19 @@
+{
+  "name": "chat-history",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "tsx src/cli.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "llmos-v0": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "tsx": "^4.21.0",
+    "vitest": "^2",
+    "@types/node": "^20"
+  }
+}
